@@ -7,7 +7,6 @@ public class AsteroidSpawner:MonoBehaviour
     private float width;
     private float radius;
     private float angle;
-    private Vector2 spawnPosition;
     private Vector2 direction;
     [SerializeField] private GameObject meteorPrefab;
     private void Start()
@@ -15,14 +14,8 @@ public class AsteroidSpawner:MonoBehaviour
         center = Camera.main.transform.position;
         height = Camera.main.orthographicSize;
         width = height * Camera.main.aspect;
-        radius = Mathf.Sqrt(Mathf.Pow(height, 2) + Mathf.Pow(width, 2));
-        angle = Random.Range(0f, Mathf.PI * 2);
-        spawnPosition = center + new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
-        Vector2 randomPointOnScreen = FindRandomPointOnScreen();
-        direction = (spawnPosition - randomPointOnScreen).normalized;
-        float speed = Random.Range(2f, 5f);
-        GameObject meteor = Instantiate(meteorPrefab, spawnPosition, Quaternion.identity);
-
+        Vector2 spawnPosition = CalculateSpawnPosition(); 
+        GameObject meteor = Instantiate(meteorPrefab, spawnPosition, Quaternion.identity);  
     }
 
     private void Update()
@@ -30,10 +23,23 @@ public class AsteroidSpawner:MonoBehaviour
 
     }
 
-    private Vector2 FindRandomPointOnScreen()
+    private Vector2 CalculateSpawnPosition()
     {
-        float x = Random.Range(center.x - width, center.x + width);
-        float y = Random.Range(center.y - height, center.y + height);
-        return new Vector2(x,y);
-    } 
+        radius = Mathf.Sqrt(Mathf.Pow(height, 2) + Mathf.Pow(width, 2));
+        angle = Random.Range(0f, Mathf.PI * 2);
+        Vector2 spawnPosition = center + new Vector2(Mathf.Sin(angle), Mathf.Cos(angle))*radius;
+        return spawnPosition;
+    }
+    private void OnDrawGizmos()
+    {
+        if (Camera.main == null) return;
+
+        center = Camera.main.transform.position;
+        height = Camera.main.orthographicSize;
+        width = height * Camera.main.aspect;
+        radius = Mathf.Sqrt(Mathf.Pow(height, 2) + Mathf.Pow(width, 2));
+
+        Gizmos.color = Color.red; // ÷вет круга
+        Gizmos.DrawWireSphere(center, radius); // –исуем круг
+    }
 }
