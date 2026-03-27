@@ -2,10 +2,12 @@ using UnityEngine;
 
 public class PlayerMovoment : MonoBehaviour
 {
-    private float force = 5f;
+    private float force = 8f;
     private float rotationSpeed = 100f;
     private GameObject spaceship;
     private Rigidbody2D rb2D;
+    private bool thrustInput;
+    float rotationInput;
 
     private void Awake()
     {
@@ -17,13 +19,17 @@ public class PlayerMovoment : MonoBehaviour
         
     }
 
-    void Update()
+    private void Update()
     {
-        if (Input.GetKey(KeyCode.UpArrow))
+        thrustInput = Input.GetKey(KeyCode.UpArrow);
+        rotationInput = Input.GetAxis("Horizontal");
+    }
+    void FixedUpdate()
+    {
+        if (thrustInput)
         {
             rb2D.AddForce(transform.up * force);
         }
-        float rotation = Input.GetAxis("Horizontal");
-        transform.Rotate(0, 0, -rotation * rotationSpeed * Time.deltaTime);
+        transform.Rotate(0, 0, -rotationInput * rotationSpeed * Time.deltaTime);
     }
 }

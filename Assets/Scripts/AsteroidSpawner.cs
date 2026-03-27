@@ -30,16 +30,4 @@ public class AsteroidSpawner:MonoBehaviour
         Vector2 spawnPosition = center + new Vector2(Mathf.Sin(angle), Mathf.Cos(angle))*radius;
         return spawnPosition;
     }
-    private void OnDrawGizmos()
-    {
-        if (Camera.main == null) return;
-
-        center = Camera.main.transform.position;
-        height = Camera.main.orthographicSize;
-        width = height * Camera.main.aspect;
-        radius = Mathf.Sqrt(Mathf.Pow(height, 2) + Mathf.Pow(width, 2));
-
-        Gizmos.color = Color.red; // ÷вет круга
-        Gizmos.DrawWireSphere(center, radius); // –исуем круг
-    }
 }

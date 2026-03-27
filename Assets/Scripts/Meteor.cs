@@ -23,4 +23,9 @@ public class Meteor:MonoBehaviour
         float y = Random.Range(center.y - height, center.y + height);
         return new Vector2(x, y);
     }
+
+    public void Die()
+    {
+        Destroy(gameObject);
+    }
 }
