@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Teleportation : MonoBehaviour
 {
-    private float offset = 0.05f;
+    [SerializeField] private float offset = 0.05f;
     private void Start()
     {
     }
@@ -13,13 +13,11 @@ public class Teleportation : MonoBehaviour
         else if (viewPos.x - offset > 1) viewPos.x = 0f - offset;
         if (viewPos.y + offset < 0)
         {
-            viewPos.y = 1f + 0.04f;
-            Debug.Log("переместился вверх");
+            viewPos.y = 1f + (offset - (offset * 0.2f));
         }
         else if (viewPos.y - offset > 1)
         {
-            viewPos.y = 0f - 0.04f;
-            Debug.Log("переместился вниз");
+            viewPos.y = 0f - (offset - (offset * 0.2f));
         }
         gameObject.transform.position = Camera.main.ViewportToWorldPoint(viewPos);
     }

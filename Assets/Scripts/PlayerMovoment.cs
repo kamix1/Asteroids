@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerMovoment : MonoBehaviour
 {
     private float force = 8f;
-    private float rotationSpeed = 100f;
+    private float rotationSpeed = 200f;
     private GameObject spaceship;
     private Rigidbody2D rb2D;
     private bool thrustInput;

@@ -15,7 +15,6 @@ public class PlayerShooting : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             GameObject bullet = Instantiate(BulletPrefab, Gun.transform.position, Gun.transform.rotation);
-
         }
     }
 }

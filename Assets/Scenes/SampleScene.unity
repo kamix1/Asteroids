@@ -819,7 +819,7 @@ GameObject:
   - component: {fileID: 647318081}
   - component: {fileID: 647318082}
   - component: {fileID: 647318083}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -935,7 +935,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!60 &647318079
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1036,6 +1036,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22758240991e5294a9d7a08f067c2caa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  offset: 0.05
 --- !u!1 &1119528787
 GameObject:
   m_ObjectHideFlags: 0
@@ -1045,7 +1046,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1119528788}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -4,6 +4,7 @@ public class Bullet : MonoBehaviour
 {
     private Rigidbody2D rb2D;
     private float speed;
+    private float lifeSpan = 1f;
     private void Awake()
     {
         rb2D = GetComponent<Rigidbody2D>();
@@ -13,6 +14,7 @@ public class Bullet : MonoBehaviour
     {
         speed = 500f;
         rb2D.AddForce(transform.up * speed);
+        Destroy(gameObject, lifeSpan);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
