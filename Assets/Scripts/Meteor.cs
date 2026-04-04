@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Meteor:MonoBehaviour
@@ -26,6 +27,7 @@ public class Meteor:MonoBehaviour
     {
         speed = UnityEngine.Random.Range(1f, 2f);
         this.meteorType = meteorType;
+        SetAlpha(this.meteorType);
         float size = SetSize(meteorType);
         transform.localScale = new Vector3(size, size, size);
     }
@@ -33,6 +35,7 @@ public class Meteor:MonoBehaviour
     {
         this.speed = speed;
         this.meteorType = meteorType;
+        SetAlpha(this.meteorType);
         transform.localScale = new Vector3(size, size, size);
     }
 
@@ -48,6 +51,25 @@ public class Meteor:MonoBehaviour
         GetComponent<Rigidbody2D>().linearVelocity = direction * speed;
     }
 
+    private void SetAlpha(Meteor.MeteorType meteorType)
+    {
+        SpriteRenderer[] sr = gameObject.GetComponentsInChildren<SpriteRenderer>();
+        for (int i = 0; i < sr.Length; i++)
+        {
+            switch (meteorType)
+            {
+                case MeteorType.small:
+                    sr[i].color = new Color(sr[i].color.r, sr[i].color.g, sr[i].color.b, 0.8f);
+                    break;
+                case MeteorType.medium:
+                    sr[i].color = new Color(sr[i].color.r, sr[i].color.g, sr[i].color.b, 0.9f);
+                    break;
+                case MeteorType.large:
+                    sr[i].color = new Color(sr[i].color.r, sr[i].color.g, sr[i].color.b, 1f);
+                    break;
+            }
+        }
+    }
     private float SetSize(MeteorType meteorType)
     {
         size = meteorType switch

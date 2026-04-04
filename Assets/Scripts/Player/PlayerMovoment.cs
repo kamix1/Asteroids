@@ -8,6 +8,7 @@ public class PlayerMovoment : MonoBehaviour
     private Rigidbody2D rb2D;
     private bool thrustInput;
     float rotationInput;
+    [SerializeField] private ShipVFX shipVFX;
 
     private void Awake()
     {
@@ -23,6 +24,8 @@ public class PlayerMovoment : MonoBehaviour
     {
         thrustInput = Input.GetKey(KeyCode.UpArrow);
         rotationInput = Input.GetAxis("Horizontal");
+
+        shipVFX.SetThrust(thrustInput);
     }
     void FixedUpdate()
     {

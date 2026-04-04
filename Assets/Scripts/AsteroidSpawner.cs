@@ -60,6 +60,10 @@ public class AsteroidSpawner:MonoBehaviour
         Vector2 spawnPosition = center + new Vector2(Mathf.Sin(angle), Mathf.Cos(angle))*radius;
         return spawnPosition;
     }
-    
 
+    private void OnDestroy()
+    {
+        Meteor.meteorDied -= AsteroidSpawner_meteorDied;
+        Meteor.meteorSpawned -= AsteroidSpawner_meteorSpawned;
+    }
 }
