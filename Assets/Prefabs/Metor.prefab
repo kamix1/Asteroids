@@ -168,6 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a971033d3d4fd6040900c1f8e9093391, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosion: {fileID: 623053821374039172, guid: d4453d039580a7e4eb21d8a5e02c5f36, type: 3}
   meteorType: 0
 --- !u!114 &-2325870376472815404
 MonoBehaviour:

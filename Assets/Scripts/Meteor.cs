@@ -9,9 +9,11 @@ public class Meteor:MonoBehaviour
     private float width;
     private float size;
     private float speed;
+    [SerializeField] private ParticleSystem explosion;
     public MeteorType meteorType;
     public static event Action<Meteor> meteorDied;
     public static event Action<Meteor> meteorSpawned;
+    
     public enum MeteorType
     {
         large,
@@ -91,6 +93,7 @@ public class Meteor:MonoBehaviour
 
     public void Die()
     {
+        DeathVisual();
         if (meteorType == MeteorType.small)
         {
             Destroy(gameObject);
@@ -113,5 +116,11 @@ public class Meteor:MonoBehaviour
             Destroy(gameObject);
         }
         meteorDied?.Invoke(this);
+    }
+
+    private void DeathVisual()
+    {
+        ParticleSystem ps = Instantiate(explosion, gameObject.transform.position, Quaternion.identity);
+        Destroy(ps, 0.5f);
     }
 }
