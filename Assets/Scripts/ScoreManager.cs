@@ -22,7 +22,7 @@ public class ScoreManager : MonoBehaviour
     private void Update()
     {
     }
-    private void ScoreManager_OnPlayerDeath()
+    private void ScoreManager_OnPlayerDeath(GameObject ship)
     {
         if(highestScore < score)
         {

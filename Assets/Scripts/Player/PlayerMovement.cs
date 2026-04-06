@@ -1,6 +1,7 @@
+using System;
 using UnityEngine;
 
-public class PlayerMovoment : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     private float force = 8f;
     private float rotationSpeed = 200f;
@@ -9,6 +10,7 @@ public class PlayerMovoment : MonoBehaviour
     private bool thrustInput;
     float rotationInput;
     [SerializeField] private ShipVFX shipVFX;
+    public static event Action<bool> OnShipAxelerating;
 
     private void Awake()
     {
@@ -24,6 +26,14 @@ public class PlayerMovoment : MonoBehaviour
     {
         thrustInput = Input.GetKey(KeyCode.UpArrow);
         rotationInput = Input.GetAxis("Horizontal");
+        if (thrustInput)
+        {
+            OnShipAxelerating?.Invoke(true);
+        }
+        else
+        {
+            OnShipAxelerating?.Invoke(false);
+        }
 
         shipVFX.SetThrust(thrustInput);
     }

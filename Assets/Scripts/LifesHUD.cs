@@ -18,10 +18,17 @@ public class LifesHUD : MonoBehaviour
         CreateLifesImages();
     }
 
-    private void LifeHUD_OnLifeLost()
+    private void LifeHUD_OnLifeLost(GameObject ship)
     {
-        Destroy(lifeContainers[lifesCount - 1]);
-        lifesCount--;
+        if (lifesCount > 0)
+        {
+            Destroy(lifeContainers[lifesCount - 1]);
+            lifesCount--;
+        }
+        else
+        {
+            Debug.Log("no lifes");
+        }
     }
 
     private void CreateLifesImages()
